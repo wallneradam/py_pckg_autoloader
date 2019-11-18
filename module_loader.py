@@ -28,4 +28,5 @@ def load_all_modules():
         # Add the module to the globals of the caller module
         caller_globals[info.name] = sys.modules[module_path]
         # Add it to the __all__ magic variable
-        caller_globals['__all__'].append(info.name)
+        if info.name not in caller_globals['__all__']:
+            caller_globals['__all__'].append(info.name)
